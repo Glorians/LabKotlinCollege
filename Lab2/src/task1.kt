@@ -7,13 +7,20 @@ fun task1 (state: Boolean) {
 
         val listTempFarg = mutableListOf<Double>()
 
+        // Генеруємо температуру Фарангейта
         for (x in -25..40) {
             listTempFarg.add(x.toDouble())
         }
 
-        val convert = (it - 32)/1.8
+        // Не до кінця зрозумів...
+        val convert = {num: Double -> (num - 32)/1.8}
 
+        val list = mutableListOf<Double>()
 
+        val list2 = list.map {num: Double -> convert(num)}
+        
+
+        // Метод конвернутавння темеператури повертає список температури в цельсії
         fun convertTemperature (listTempF: MutableList<Double>): MutableList<Double> {
 
             val resultList = mutableListOf<Double>()
@@ -27,9 +34,10 @@ fun task1 (state: Boolean) {
         val listTempCel = convertTemperature(listTempFarg)
 
 
+        // Метод виведення результату
         fun printingResult (listF: MutableList<Double>, listC: MutableList<Double>) {
 
-            val temperature = listTempFarg.zip(listTempCel)
+            val temperature = listTempFarg.zip(listTempCel) //ключ Фарангейт -> значення Цельсій
 
             for (temp in temperature) {
                 println("${temp.first} --> ${temp.second}")
